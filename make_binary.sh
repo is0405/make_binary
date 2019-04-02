@@ -6,7 +6,7 @@ option=$1
 if [ $# -eq 1 ]; then
     # バージョン情報を表示
     if [ $option = "-v" ]; then
-	echo "Version 1.00 Junichiro Kawano"
+	echo "Version 1.03 Junichiro Kawano"
     fi
 elif [ $# -eq 0 ]; then
     if [ -e /home/junjun/Agent ]; then
