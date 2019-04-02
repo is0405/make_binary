@@ -9,17 +9,17 @@ if [ $# -eq 1 ]; then
 	echo "Version 1.00 Junichiro Kawano"
     fi
 elif [ $# -eq 0 ]; then
-    if [ -e /home/junjun/Ri-one ]; then
-	sudo -S rm -rf /home/junjun/Ri-one
+    if [ -e /home/junjun/Agent ]; then
+	sudo -S rm -rf /home/junjun/Agent
     fi
-    if [ -e /home/junjun/Ri-one.tar.gz ]; then
-	sudo -S rm /home/junjun/Ri-one.tar.gz
+    if [ -e /home/junjun/Agent.tar.gz ]; then
+	sudo -S rm /home/junjun/Agent.tar.gz
     fi
 	
     #バイナリにしたい対象をコピー
-    cp -rf "/home/junjun/soccer/ri-one2019_soccer/" "/home/junjun/Ri-one"
-    if [ -e /home/junjun/Ri-one ]; then
-    	cd /home/junjun/Ri-one 
+    cp -rf "/home/junjun/soccer/agent2d-3.1.1/" "/home/junjun/Agent"
+    if [ -e /home/junjun/Agent ]; then
+    	cd /home/junjun/Agent 
 
      	./bootstrap 
      	./configure
@@ -27,7 +27,7 @@ elif [ $# -eq 0 ]; then
 	
 	sudo -S make distclean
 	#--with-librcsc=インストール先(絶対パス)
-	./configure --with-librcsc=/home/junjun/Ri-one CXXFLAGS="-O2"
+	./configure --with-librcsc=/home/junjun/Agent CXXFLAGS="-O2"
 		
 	make
 	sudo -S make install
@@ -48,7 +48,7 @@ elif [ $# -eq 0 ]; then
 
      	sudo -S make uninstall
      	sudo -S make distclean
-     	sudo -S ./configure --prefix=/home/junjun/Ri-one CXXFLAGS="-O2"
+     	sudo -S ./configure --prefix=/home/junjun/Agent CXXFLAGS="-O2"
 	sudo -S make
 	sudo -S make install
     else
@@ -56,9 +56,9 @@ elif [ $# -eq 0 ]; then
 	exit
     fi
      
-    if [ -e /home/junjun/Ri-one/src ]; then
+    if [ -e /home/junjun/Agent/src ]; then
 	#いらないファイルを削除
-	cd /home/junjun/Ri-one/src
+	cd /home/junjun/Agent/src
 
 	mv data ../
 	rm -rf chain_action
@@ -74,8 +74,8 @@ elif [ $# -eq 0 ]; then
 	exit     	
     fi
 	
-    if [ -e /home/junjun/Ri-one ]; then
-	cd /home/junjun/Ri-one
+    if [ -e /home/junjun/Agent ]; then
+	cd /home/junjun/Agent
 	
      	#startスクリプト作成
      	cat << START > start
@@ -85,7 +85,7 @@ HOST=$1
 BASEDIR=$2
 NUM=$3
 	 
-teamname="Ri-one"
+teamname="Agent"
 	 
 player="./src/sample_player"
 coach="./src/sample_coach"
@@ -153,7 +153,7 @@ HOST="localhost"
 BASEDIR=`pwd`
 NUM=1
 	 
-teamname="Ri-one"
+teamname="Agent"
 	 
 player="./src/sample_player"
 coach="./src/sample_coach"
@@ -202,10 +202,10 @@ LOCAL
 	chmod +x kill
 	chmod +x local-start
 
-	tar czvf Ri-one.tar .
-	mv Ri-one.tar /home/junjun/
+	tar czvf Agent.tar .
+	mv Agent.tar /home/junjun/
 	cd /home/junjun/
-	gzip Ri-one.tar
+	gzip Agent.tar
     else
  	echo "失敗しました(4)"
 	exit
