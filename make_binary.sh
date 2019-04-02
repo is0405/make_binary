@@ -190,7 +190,7 @@ do
 	     \$coach \$coachopt &
  	     ;;
    	     *)
-   	     \$player $opt &
+   	     \$player \$opt &
    	     ;;
   	esac
 	sleep 0.01
