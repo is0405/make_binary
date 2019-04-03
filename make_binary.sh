@@ -81,9 +81,9 @@ elif [ $# -eq 0 ]; then
      	cat << START > start
 #!/bin/sh
  
-HOST=$1
-BASEDIR=$2
-NUM=$3
+HOST=\$1
+BASEDIR=\$2
+NUM=\$3
 	 
 teamname="Agent"
 	 
@@ -102,11 +102,11 @@ coachopt="\${coachopt} -h \${HOST} -t \${teamname}"
 cd \$BASEDIR
 	 
 LIBPATH=lib
-if [ x"$LIBPATH" != x ]; then
+if [ x"\$LIBPATH" != x ]; then
     if [ x"\$LD_LIBRARY_PATH" = x ]; then
-        LD_LIBRARY_PATH=$LIBPATH
+        LD_LIBRARY_PATH=\$LIBPATH
     else
-	LD_LIBRARY_PATH=$LIBPATH:\$LD_LIBRARY_PATH
+	LD_LIBRARY_PATH=\$LIBPATH:\$LD_LIBRARY_PATH
     fi
     export LD_LIBRARY_PATH
 fi
@@ -116,10 +116,10 @@ case \$NUM in
 	\$player \$opt -g 
 	;;
 	12)
-    	\$coach $coachopt 
+    	\$coach \$coachopt 
     	;;
 	*)
-    	\$player $opt 
+    	\$player \$opt 
     	;;
 esac
 START
@@ -150,7 +150,7 @@ TEAM
 #!/bin/sh
 	 
 HOST="localhost"
-BASEDIR=`pwd`
+BASEDIR=\`pwd\`
 NUM=1
 	 
 teamname="Agent"
