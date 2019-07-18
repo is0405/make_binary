@@ -106,15 +106,15 @@ if [ x"\$LIBPATH" != x ]; then
     if [ x"\$LD_LIBRARY_PATH" = x ]; then
         LD_LIBRARY_PATH=\$LIBPATH
     else
-	LD_LIBRARY_PATH=\$LIBPATH:\$LD_LIBRARY_PATH
+	    LD_LIBRARY_PATH=\$LIBPATH:\$LD_LIBRARY_PATH
     fi
     export LD_LIBRARY_PATH
 fi
 	 
 case \$NUM in
 	1)
-	\$player \$opt -g 
-	;;
+	    \$player \$opt -g 
+	    ;;
 	12)
     	\$coach \$coachopt 
     	;;
@@ -184,14 +184,14 @@ while [ \$NUM -le 12 ]
 do
 	case \$NUM in
 	     1)
-	     \$player \$opt -g &
+	         \$player \$opt -g &
              ;;
-    	     12)
-	     \$coach \$coachopt &
- 	     ;;
+    	 12)
+	         \$coach \$coachopt &
+ 	         ;;
    	     *)
-   	     \$player \$opt &
-   	     ;;
+   	         \$player \$opt &
+   	         ;;
   	esac
 	sleep 0.01
 	NUM=\`expr \$NUM + 1\`
